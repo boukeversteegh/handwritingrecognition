@@ -135,6 +135,12 @@
 			}
 		}
 		
+		function clear() {
+			clearCanvas(canvas, context);
+			clearCanvas(ncanvas, ncontext);
+			window.writing = [];	
+		}
+		
 		function clearCanvas(canvas, context) {
 			context.clearRect(0,0,canvas.width, canvas.height);
 		}
@@ -241,10 +247,13 @@
 
 			
 			$('#clear').click(function(e) {
-				clearCanvas(canvas, context);
-
-				clearCanvas(ncanvas, ncontext);
-				window.writing = [];
+				clear();
+			});
+			
+			$(window).keypress(function(e) {
+				if( e.which == 99 ) {
+					clear();
+				}
 			});
 
 		});
