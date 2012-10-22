@@ -297,6 +297,11 @@
 			border: 1px solid silver;
 			color: silver;
 		}
+		#usage {
+			color: gray;
+			font-style: italic;
+			
+		}
 	</style>
 </head>
 <body>
@@ -313,8 +318,12 @@
 		<canvas id="writebox" width="100" height="100"></canvas>
 	</td>
 	<td>
-		Normalized input:</br>
+		Normalized:</br>
 		<canvas id="normalized" width="100" height="100"></canvas>
+	</td>
+	<td valign="top">
+		Usage:
+		<div id="usage">Write something in the input box. The program will try to find the closest match in the Corpus. Click "save" to add the writing to the corpus (temporarily!). Click "clear" or press C to clear the input box.</div>
 	</td>
 	</tr>
 	</table>
