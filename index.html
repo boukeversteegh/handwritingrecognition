@@ -38,19 +38,30 @@
 			}
 			
 			var boxsize = {x: Math.max(1, max.x-min.x), y: Math.max(1, max.y-min.y)};
+			var boxratio = boxsize.x / boxsize.y;
 			
-			//console.log(min, max, boxsize);
 			
-			// Normalize dimensions between 0-100
-			var scale = 80;
-			//var padding = 10;
-			
+			// Normalize dimensions to 80% of square.
+			var nscale = 80;
+			var scale = {};
+			if( boxratio >= 1 ) {
+				scale.x = nscale;
+				scale.y = nscale/boxratio;
+			} else {
+				scale.y = nscale;
+				scale.x = nscale*boxratio;
+			}
+			var offset = {
+				x: (100-scale.x)/2,
+				y: (100-scale.y)/2
+			}
+
 			var nwriting = [];
 			for(var i in writing) {
 				var pos = writing[i]
 				var npos = {
-					x: 10 + scale * ((pos.x - min.x) / boxsize.x),
-					y: 10 + scale * ((pos.y - min.y) / boxsize.y)
+					x: offset.x + scale.x * ((pos.x - min.x) / boxsize.x),
+					y: offset.y + scale.y * ((pos.y - min.y) / boxsize.y)
 				}
 				nwriting.push(npos);
 			}
