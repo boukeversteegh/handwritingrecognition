@@ -194,7 +194,9 @@
 		$(function(){
 			window.canvas = $('#writebox')[0];
 			window.context = window.canvas.getContext('2d');
-			
+				
+			ncanvas = $('#normalized')[0];
+			ncontext = ncanvas.getContext('2d');
 			/*
 			context.beginPath();
 			  context.moveTo(x,y);
@@ -210,8 +212,10 @@
 			$('#writebox').mouseup(function() {
 				$(this).data('write', false);
 				
-				//context.stroke();
+				clearCanvas(canvas, context);
 				drawWriting(context, window.writing);
+				
+				clearCanvas(ncanvas, ncontext);
 				drawWriting($("#normalized")[0].getContext('2d'), normalize(window.writing));
 			});
 			
@@ -230,9 +234,7 @@
 			
 			$('#clear').click(function(e) {
 				clearCanvas(canvas, context);
-				
-				var ncanvas = $('#normalized')[0];
-				var ncontext = ncanvas.getContext('2d');
+
 				clearCanvas(ncanvas, ncontext);
 				window.writing = [];
 			});
