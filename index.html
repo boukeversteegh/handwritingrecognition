@@ -1,0 +1,288 @@
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script language="javascript">
+		
+		window.writings = [];
+		//window.writing = [{x:0,y:0}, {x:5, y:0}, {x:90, y:0}, {x:90, y:90}];
+		window.writing = [];
+		
+		window.samples = [[{"x":62,"y":28},{"x":52,"y":28},{"x":42.715233091147404,"y":31.713906763541036},{"x":35.444858939904634,"y":38.579885186238045},{"x":28.76974236700768,"y":46.025878655093386},{"x":25.76680275092957,"y":55.56434570500181},{"x":22.763863134851466,"y":65.10281275491023},{"x":26.792135162449267,"y":74.25557323859346},{"x":35.50697735965794,"y":79.15980870171624},{"x":45.48036267346271,"y":79.88890772268888},{"x":53.73108114398681,"y":74.23862943572351},{"x":61.981799614510926,"y":68.58835114875815},{"x":63.450926953012534,"y":58.69685657699261},{"x":64.8841338685215,"y":48.800093574003334},{"x":64.99141022074068,"y":38.800669001346435},{"x":70.06724833342626,"y":47.4166928786235},{"x":74.89281138953515,"y":56.17534238591154},{"x":79.71837444564405,"y":64.93399189319958},{"x":88.68859936230547,"y":69.3538408662423}],[{"x":31,"y":15},{"x":31,"y":25},{"x":31,"y":35},{"x":31,"y":45},{"x":30.376217138448194,"y":54.980525784828885},{"x":29.752434276896388,"y":64.96105156965777},{"x":29.072394476193107,"y":74.93790206815976},{"x":33.792801271341446,"y":66.12213439379825},{"x":37.9809068728057,"y":57.04139810916892},{"x":45.0432364221869,"y":49.961602820042465},{"x":52.105565971568105,"y":42.881807530916014},{"x":62.068175797884905,"y":43.745755126882294},{"x":71.26038032423443,"y":47.683187786085405},{"x":73.82692075032975,"y":57.34822116632877},{"x":70.14108699339012,"y":66.64416810659282},{"x":60.991761482238616,"y":70.68023583285712},{"x":51.84243597108711,"y":74.71630355912143},{"x":42.7065803657906,"y":70.64983797348415},{"x":34.45687340930524,"y":64.99808292464162}],[{"x":63,"y":28},{"x":54.05572809000084,"y":23.52786404500042},{"x":44.069477710064035,"y":23.003647153616676},{"x":34.11807450666619,"y":23.98831678522069},{"x":26.550129828714724,"y":30.52484593695451},{"x":20.863660726161964,"y":38.75066316965017},{"x":19.07467166500591,"y":48.58933778257766},{"x":23.947500110498474,"y":57.32177976296313},{"x":31.184760995681412,"y":64.22265324968936},{"x":39.413668099676215,"y":69.9046500706867},{"x":47.642575203671015,"y":75.58664689168404},{"x":57.519842205294125,"y":74.02472609386899},{"x":67.4910736279118,"y":73.2667393416089},{"x":77.46230505052948,"y":72.50875258934879}],[{"x":57,"y":52},{"x":50.41495392131482,"y":44.474233052931226},{"x":40.68573155832132,"y":42.16290611555797},{"x":31.088957542347877,"y":44.97394302145889},{"x":26.898370223066127,"y":54.053534307385526},{"x":25.023622865334282,"y":63.87622855818441},{"x":26.939666995293194,"y":73.69095091248715},{"x":36.257489805022615,"y":77.32112695318904},{"x":46.237581368214805,"y":77.95181894639975},{"x":52.48495069549121,"y":70.14346595177881},{"x":58.73232002276761,"y":62.33511295715785},{"x":59.5561618082527,"y":52.36910649957973},{"x":59.983809219601696,"y":42.37825479957104},{"x":59.99591152201998,"y":32.37826212285991},{"x":60.87495749445633,"y":22.416973141089354},{"x":61.75400346689269,"y":12.4556841593188},{"x":61.96704398471121,"y":22.453414588659633},{"x":61.993310813907144,"y":32.45338009128433},{"x":61.99712304990563,"y":42.45337936462714},{"x":62.00093528590412,"y":52.45337863796995},{"x":62.00004847498303,"y":62.45337859864827},{"x":63.86314239732949,"y":72.27828984692505},{"x":69.78087811921947,"y":80.33933220668644},{"x":79.28761228114938,"y":83.44126798526}],[{"x":36,"y":48},{"x":46,"y":48},{"x":56,"y":48},{"x":63.071067811865476,"y":40.928932188134524},{"x":61.48934685569005,"y":31.054816591444585},{"x":53.46417096588224,"y":25.08853199065262},{"x":45.43899507607442,"y":19.122247389860654},{"x":36.18914906729674,"y":22.922293286149227},{"x":26.189390211741895,"y":22.991739889755255},{"x":21.586273090347685,"y":31.869313475298068},{"x":19.323013335109795,"y":41.60982964644221},{"x":19.062400596502645,"y":51.606433119646276},{"x":22.60517656345065,"y":60.957836139943055},{"x":28.75628245741299,"y":68.842244569322},{"x":34.90738835137533,"y":76.72665299870094},{"x":44.662966180849914,"y":78.92408359215867},{"x":54.36593296893406,"y":81.34326434384633},{"x":64.28104761680412,"y":82.64345722168892},{"x":74.18413946832284,"y":81.25465493900666},{"x":84.08723131984156,"y":79.8658526563244}],[{"x":19,"y":58},{"x":28.88371697650617,"y":56.47942815746059},{"x":38.59625270095237,"y":54.09895555703933},{"x":48.180117853976995,"y":51.24421761308715},{"x":56.48962958088481,"y":45.680764111854174},{"x":63.480943888640795,"y":38.53083234643386},{"x":66.65033640959071,"y":29.04637395134631},{"x":64.09950468813142,"y":19.377182799610967},{"x":54.467660572685745,"y":16.68876710709713},{"x":44.83581645724008,"y":14.000351414583296},{"x":41.57087075187319,"y":23.452342185897365},{"x":38.067809079525105,"y":32.81869467337753},{"x":35.18275601687722,"y":42.39347763831758},{"x":32.30861496286934,"y":51.97154180607436},{"x":32.00102138649871,"y":61.966809996161885},{"x":32.000095646532316,"y":71.96680995331216},{"x":31.999169906565932,"y":81.96680991046244},{"x":41.79870434328714,"y":83.95907616363124},{"x":50.19220153346606,"y":78.52315812539165},{"x":51.88532285569081,"y":68.66753332590643},{"x":47.72156741958847,"y":59.57560610070669},{"x":39.29613637692976,"y":54.189316863634204},{"x":49.267580940458544,"y":53.43413919151177},{"x":59.263775639326894,"y":53.15829223699469},{"x":69.25997033819525,"y":52.88244528247761}]]
+		
+		$(function() {
+			for( var i in window.samples ) {
+				saveWriting(window.samples[i]);
+			}
+		});
+		
+		function vectorlength(pos) {
+			return Math.sqrt(Math.pow(pos.x,2)+Math.pow(pos.y,2));
+		}
+		
+		function vectordelta(pos1, pos2) {
+			return {
+				x: pos2.x - pos1.x,
+				y: pos2.y - pos1.y
+			}
+		}
+		
+		function normalize(writing) {
+			var min = {x:writing[0].x, y:writing[0].y};
+			var max = {x:writing[0].x, y:writing[0].y};
+			
+			for(var i in writing) {
+				min.x = Math.min(min.x, writing[i].x);
+				min.y = Math.min(min.y, writing[i].y);
+				max.x = Math.max(max.x, writing[i].x);
+				max.y = Math.max(max.y, writing[i].y);
+			}
+			
+			var boxsize = {x: Math.max(1, max.x-min.x), y: Math.max(1, max.y-min.y)};
+			
+			//console.log(min, max, boxsize);
+			
+			// Normalize dimensions between 0-100
+			var scale = 80;
+			//var padding = 10;
+			
+			var nwriting = [];
+			for(var i in writing) {
+				var pos = writing[i]
+				var npos = {
+					x: 10 + scale * ((pos.x - min.x) / boxsize.x),
+					y: 10 + scale * ((pos.y - min.y) / boxsize.y)
+				}
+				nwriting.push(npos);
+			}
+			
+			// Normalize point density to one point per stepsize
+			var stepsize = 10;
+			var npwriting = [];
+			npwriting.push({x:nwriting[0].x, y:nwriting[0].y}	);
+			
+			var totaldistance = 0;
+			var remainingdistance = 0;
+			
+			var lastpos = nwriting[0];
+			for(var i in nwriting) {
+				//console.log('i\t' + i);
+				var pos = nwriting[i];
+				
+				var deltapos = {
+					x: pos.x - lastpos.x,
+					y: pos.y - lastpos.y,
+				}
+				
+				var deltadistance = vectorlength(deltapos);
+				
+				var steps = Math.floor(deltadistance / stepsize);
+				
+				var step = 1;
+				console.log('DD\t' + deltapos.x);
+				console.log('RD\t' + remainingdistance);
+				remainingdistance += deltadistance;
+				var ratio = (stepsize / deltadistance);
+				while( ratio <= 1 && remainingdistance > stepsize ) {
+					var steppos = {
+						x: lastpos.x + deltapos.x * step * ratio,
+						y: lastpos.y + deltapos.y * step * ratio
+					};
+					//console.log('- step\t' + step);
+					remainingdistance -= stepsize;
+					npwriting.push(steppos);
+					step += 1
+
+				}
+				
+				if( step == 1 ) {
+					//lastpos = pos;
+					remainingdistance -= deltadistance;
+				} else {
+					lastpos = steppos;	
+				}
+				//remainingdistance += deltadistance;
+				
+			}
+			//console.log(npwriting);
+			var log = [];
+			for( var i in npwriting ) {
+				log.push("" + npwriting[i].x + "," + npwriting[i].y);
+			}
+			//console.log(log);
+			return npwriting;
+		}
+		
+			
+		function drawWriting(context, writing) {
+			//
+			context.beginPath();
+			context.moveTo(writing[0].x, writing[0].y);
+			for( var i in writing ) {
+				context.lineTo(writing[i].x, writing[i].y);
+			}
+			context.lineWidth = 2;
+			context.stroke();
+			context.fillStyle = 'blue';
+			for( var i in writing ) {
+				context.fillRect(writing[i].x,writing[i].y,4,4);
+			}
+		}
+		
+		function clearCanvas(canvas, context) {
+			context.clearRect(0,0,canvas.width, canvas.height);
+		}
+		
+			
+		function saveWriting(writing) {				
+			cwriting = normalize(writing);
+
+			window.writings.push(cwriting);
+			var corpuscanvas = $('<canvas width="100" height="100"/>');
+			var corpuscontext = corpuscanvas[0].getContext('2d');
+			
+			drawWriting(corpuscontext, cwriting);
+			
+			$("#corpus").append(corpuscanvas);
+		}
+		
+		
+		function search(writing, writings) {
+			var best = null;
+			for(var i in writings) {
+				error = similarityerror(writing, writings[i]);
+				if( best == null || best.error > error ) {
+					best = {
+						index: i,
+						error: error
+					};
+				}
+			}
+			return best;
+		}
+		
+		function similarityerror(qwriting, corpuswriting) {
+			var lengthmin = Math.min(qwriting.length, corpuswriting.length);
+			var lengthmax = Math.max(qwriting.length, corpuswriting.length);
+			var overlap = lengthmin / lengthmax;
+			var totalerror = 0;
+			
+			
+			for(var i=0; i<lengthmin; i++) {
+				var delta = vectordelta(qwriting[i], corpuswriting[i]);
+				var deltalength = vectorlength(delta);
+				var error = Math.pow(Math.abs(deltalength),2);
+				totalerror += error;
+			}
+			totalerror /= overlap;
+			
+			return totalerror;
+		}
+		
+		window.context =  null;
+		
+		$(function(){
+			window.canvas = $('#writebox')[0];
+			window.context = window.canvas.getContext('2d');
+			
+			/*
+			context.beginPath();
+			  context.moveTo(x,y);
+			  context.lineTo(x,y);
+			  context.stroke();
+			*/
+			$('#writebox').mousedown(function(e) {
+				$(this).data('write', true);
+				//context.beginPath();
+				//context.lineTo(e.offsetX, e.offsetY);
+				
+			});
+			$('#writebox').mouseup(function() {
+				$(this).data('write', false);
+				
+				//context.stroke();
+				drawWriting(context, window.writing);
+				drawWriting($("#normalized")[0].getContext('2d'), normalize(window.writing));
+			});
+			
+			$('#writebox').mousemove(function(e) {
+				if( $(this).data('write') ) {
+					var pos = {x:e.offsetX,y: e.offsetY};
+					window.writing.push(pos);
+					//context.lineTo(pos.x, pos.y);
+				}
+			});
+			
+			$('#save').click(function(e) {
+				saveWriting(window.writing);
+			});
+
+			
+			$('#clear').click(function(e) {
+				clearCanvas(canvas, context);
+				
+				var ncanvas = $('#normalized')[0];
+				var ncontext = ncanvas.getContext('2d');
+				clearCanvas(ncanvas, ncontext);
+				window.writing = [];
+			});
+			
+			$('#search').click(function(e) {
+				var best = search(normalize(window.writing), window.writings);
+				$('#corpus canvas').css({'background': 'none'});
+				$("#corpus canvas").eq(best.index).css({'background':'yellow'});
+				console.log(best);
+			});
+
+			
+			//normalize();
+		});
+		
+		
+	</script>
+	<style type="text/css">
+		
+		
+		canvas {
+			border: 1px solid silver;
+		}
+		
+		#writebox {
+			background: #EEE;
+		}
+		
+		#corpus canvas {
+			border: 1px solid silver;
+		}
+		
+		fieldset {
+			border: 1px solid silver;
+			color: silver;
+		}
+	</style>
+</head>
+<body>
+
+	
+	<h2>Handwriting Recognition</h2>
+	<button id="save">Save</button>
+	<button id="search">Search</button>
+	<button id="clear">Clear</button>
+	<br/>
+	
+	<div>
+		Input:<br/>
+		<canvas id="writebox" width="100" height="100"></canvas>
+	</div>
+	<div>
+		Normalized input:</br>
+		<canvas id="normalized" width="100" height="100"></canvas>
+	</div>
+	
+	<fieldset>
+		<legend>Corpus</legend>
+	<div id="corpus">
+		
+	</div>
+	</fieldset>
+</body>
+</html>
