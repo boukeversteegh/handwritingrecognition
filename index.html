@@ -173,7 +173,7 @@
 				var error = Math.pow(Math.abs(deltalength),2);
 				totalerror += error;
 			}
-			totalerror /= overlap;
+			totalerror /= Math.pow(overlap,2);
 			
 			return totalerror;
 		}
