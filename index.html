@@ -3,6 +3,7 @@
 	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>-->
 	
 	<script src="js/jquery-1.4.4.js"></script>
+	<script src="js/corpus_abc.js"></script>
 	<script src="js/corpus.js"></script>
 	<script language="javascript">
 		
@@ -53,6 +54,8 @@
 			}
 
 			var nwriting = [];
+			var totaldistance = 0;
+			var lastpos = writing[0];
 			for(var i in writing) {
 				var pos = writing[i]
 				var npos = {
@@ -60,14 +63,25 @@
 					y: offset.y + scale.y * ((pos.y - min.y) / boxsize.y)
 				}
 				nwriting.push(npos);
+				
+				var deltapos = vectordelta(lastpos, pos);
+				totaldistance += vectorlength(deltapos);
+				lastpos = pos;
 			}
 			
 			// Normalize point density to one point per stepsize
+			var stepsizedynamic = false;
+			
 			var stepsize = 10;
+			var stepsize_dynamictotal = 30;
+			
+			if( stepsizedynamic ) {
+				stepsize = Math.round(totaldistance / stepsize_dynamictotal);
+			} 
 			var npwriting = [];
 			npwriting.push({x:nwriting[0].x, y:nwriting[0].y}	);
 			
-			var totaldistance = 0;
+			
 			var remainingdistance = 0;
 			
 			var lastpos = nwriting[0];
@@ -91,8 +105,8 @@
 				var ratio = (stepsize / deltadistance);
 				while( ratio <= 1 && remainingdistance > stepsize ) {
 					var steppos = {
-						x: lastpos.x + deltapos.x * step * ratio,
-						y: lastpos.y + deltapos.y * step * ratio
+						x: Math.round(lastpos.x + deltapos.x * step * ratio),
+						y: Math.round(lastpos.y + deltapos.y * step * ratio)
 					};
 					//console.log('- step\t' + step);
 					remainingdistance -= stepsize;
@@ -111,10 +125,10 @@
 				
 			}
 			//console.log(npwriting);
-			var log = [];
+			/*var log = [];
 			for( var i in npwriting ) {
 				log.push("" + npwriting[i].x + "," + npwriting[i].y);
-			}
+			}*/
 			//console.log(log);
 			return npwriting;
 		}
@@ -196,6 +210,10 @@
 			totalerror /= Math.pow(overlap,2);
 			
 			return totalerror;
+		}
+		
+		function similarityerror_align(qwriting, corpuswriting) {
+			
 		}
 		
 		window.context =  null;
