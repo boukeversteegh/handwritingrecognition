@@ -156,7 +156,7 @@
 		}
 		
 		
-		function search(writing, writings) {
+		function searchbest(writing, writings) {
 			var best = null;
 			for(var i in writings) {
 				error = similarityerror(writing, writings[i]);
@@ -168,6 +168,13 @@
 				}
 			}
 			return best;
+		}
+		
+			
+		function search(writing) {
+			var best = searchbest(writing, window.writings);
+			$('#corpus canvas').css({'background': 'none'});
+			$("#corpus canvas").eq(best.index).css({'background':'yellow'});
 		}
 		
 		function similarityerror(qwriting, corpuswriting) {
@@ -214,8 +221,13 @@
 				clearCanvas(canvas, context);
 				drawWriting(context, window.writing);
 				
+				var nwriting = normalize(window.writing);
+				
 				clearCanvas(ncanvas, ncontext);
-				drawWriting($("#normalized")[0].getContext('2d'), normalize(window.writing));
+				drawWriting($("#normalized")[0].getContext('2d'), nwriting);
+				
+				// Search best match
+				search(nwriting, window.writings);
 			});
 			
 			$('#writebox').mousemove(function(e) {
@@ -237,16 +249,7 @@
 				clearCanvas(ncanvas, ncontext);
 				window.writing = [];
 			});
-			
-			$('#search').click(function(e) {
-				var best = search(normalize(window.writing), window.writings);
-				$('#corpus canvas').css({'background': 'none'});
-				$("#corpus canvas").eq(best.index).css({'background':'yellow'});
-				console.log(best);
-			});
 
-			
-			//normalize();
 		});
 		
 		
@@ -277,7 +280,6 @@
 	
 	<h2>Handwriting Recognition</h2>
 	<button id="save">Save</button>
-	<button id="search">Search</button>
 	<button id="clear">Clear</button>
 	<br/>
 	<table>
