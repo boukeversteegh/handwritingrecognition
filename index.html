@@ -205,6 +205,7 @@
 				var delta = vectordelta(qwriting[i], corpuswriting[i]);
 				var deltalength = vectorlength(delta);
 				var error = Math.pow(Math.abs(deltalength),2);
+				//var error = Math.pow(delta.x, 2) * Math.pow(delta.y, 2);
 				totalerror += error;
 			}
 			totalerror /= Math.pow(overlap,2);
